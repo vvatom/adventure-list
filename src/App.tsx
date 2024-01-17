@@ -1,25 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import { useAuth } from "./hooks/auth";
+import { TokenContext } from "./context/tokenContext";
 
 function App() {
+  const { token, login } = useAuth();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TokenContext.Provider value={token}>
+      <div className="App">
+        <button onClick={login}>login</button>
+      </div>
+    </TokenContext.Provider>
   );
 }
 
