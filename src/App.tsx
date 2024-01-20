@@ -1,6 +1,7 @@
 import "./App.scss";
 import { useAuth } from "./hooks/auth";
 import { TokenContext } from "./context/tokenContext";
+import CharacterCreator from "./components/characterCreator";
 
 function App() {
   const { token, login } = useAuth();
@@ -8,8 +9,9 @@ function App() {
   return (
     <TokenContext.Provider value={token}>
       <div className="App">
-        <button onClick={login}>login</button>
+        {token ? "zalogowano" : <button onClick={login}>login</button>}
       </div>
+      <CharacterCreator></CharacterCreator>
     </TokenContext.Provider>
   );
 }

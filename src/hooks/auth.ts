@@ -9,7 +9,9 @@ export function useAuth() {
   const link = `https://todoist.com/oauth/authorize?client_id=${CLIENT_ID}&scope=${SCOPE}&state=${STATE}`;
 
   const [code, setCode] = useState<null | string>(null);
-  const [token, setToken] = useState<null | string>(null);
+  const [token, setToken] = useState<null | string>(
+    localStorage.getItem("token") ?? null
+  );
 
   useEffect(() => {
     const location = window.location;
@@ -38,7 +40,12 @@ export function useAuth() {
       });
 
       const json = await response.json();
-      setToken(json.access_token);
+      const accesToken = json.access_token;
+      if (accesToken) {
+        setToken(accesToken);
+      }
+
+      localStorage.setItem("token", json.access_token);
     };
 
     if (code !== null && token === null) {
@@ -46,5 +53,5 @@ export function useAuth() {
     }
   }, [code, token]);
 
-  return { token, login: () => window.open(link) };
+  return { token, login: () => window.open(link, "_self") };
 }
