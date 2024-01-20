@@ -1,7 +1,7 @@
 import "./App.scss";
 import { useAuth } from "./hooks/auth";
 import { TokenContext } from "./context/tokenContext";
-import CharacterCreator from "./components/characterCreator";
+import CharacterCreator from "./components/CharacterCreator";
 
 function App() {
   const { token, login } = useAuth();

@@ -1,6 +1,5 @@
 import React from "react";
-import CreatorOptions from "./creatorOptions";
-import CharacterSVG from "./assets/characterSVG";
+import CreatorOptions from "./CreatorOptions";
 
 export default function CharacterCreator() {
   return (
